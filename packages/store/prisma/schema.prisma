@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Website {
+  id        String   @id @default(uuid())
+  url       String
+  timeAdded DateTime
+
+  ticks WebsiteTick[]
+}
+
+model Region {
+  id   String @id @default(uuid())
+  name String
+
+  ticks WebsiteTick[]
+}
+
+model WebsiteTick {
+  id               String        @id @default(uuid())
+  response_time_ms Int
+  status           WebsiteStatus
+
+  website_id String
+  region_id  String
+
+  // NOTE: These relation fields assume `WebsiteTick` belongs to `Website` and `Region`.
+  // If you want back-relations, add `ticks WebsiteTick[]` on Website/Region.
+  website Website @relation(fields: [website_id], references: [id])
+  region  Region  @relation(fields: [region_id], references: [id])
+}
+
+enum WebsiteStatus {
+  Up
+  Down
+  Unknown
+}
