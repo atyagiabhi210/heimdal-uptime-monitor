@@ -5,7 +5,8 @@
   "devDependencies": {
     "@types/bun": "latest",
     "@types/node": "^25.6.0",
-    "prisma": "^7.8.0"
+    "prisma": "^7.8.0",
+    "store": "workspace"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -14,6 +15,8 @@
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@types/express": "^5.0.6",
-    "dotenv": "^17.4.2"
+    "axios": "^1.15.2",
+    "dotenv": "^17.4.2",
+    "express": "^5.1.0"
   }
 }
