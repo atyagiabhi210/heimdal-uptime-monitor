@@ -10,10 +10,21 @@ router.post("/website", async (req, res) => {
       message: "URL is required",
     });
   }
+  if (!req.headers.user_id) {
+    return res.status(401).json({
+      status: "error",
+      message: "User ID is required",
+    });
+  }
   const website = await prisma.website.create({
     data: {
       url: req.body.url,
       timeAdded: new Date(),
+      user: {
+        connect: {
+          id: req.headers.user_id as string,
+        },
+      },
     },
   });
   res.json({

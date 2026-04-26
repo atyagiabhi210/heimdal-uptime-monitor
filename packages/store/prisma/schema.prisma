@@ -11,6 +11,13 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+model User {
+  id String @id @default(uuid())
+  email String @unique
+  userName String @unique
+  websites Website[]
+  createdAt DateTime @default(now())
+}
 
 model Website {
   id        String   @id @default(uuid())
@@ -18,6 +25,8 @@ model Website {
   timeAdded DateTime
 
   ticks WebsiteTick[]
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
 }
 
 model Region {
@@ -39,6 +48,7 @@ model WebsiteTick {
   // If you want back-relations, add `ticks WebsiteTick[]` on Website/Region.
   website Website @relation(fields: [website_id], references: [id])
   region  Region  @relation(fields: [region_id], references: [id])
+  createdAt DateTime @default(now())
 }
 
 enum WebsiteStatus {
