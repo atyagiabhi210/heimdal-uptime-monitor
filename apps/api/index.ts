@@ -3,6 +3,7 @@ import v1 from "./routes/v1/index.routes";
 
 const app = express();
 
+app.use(express.json());
 app.use("/v1", v1);
 app.get("/", (req, res) => {
   res.send("Hello World");
