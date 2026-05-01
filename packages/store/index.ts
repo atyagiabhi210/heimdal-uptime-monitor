@@ -10,3 +10,5 @@ const pool = new Pool({
 export const prisma = new PrismaClient({
   adapter: new PrismaPg(pool),
 });
+
+export * from "./model"
