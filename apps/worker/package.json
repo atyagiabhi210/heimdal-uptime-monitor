@@ -1,0 +1,16 @@
+{
+  "name": "worker",
+  "module": "index.ts",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.16.0",
+    "redis-stream": "workspace",
+    "store": "workspace"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
